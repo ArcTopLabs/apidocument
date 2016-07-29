@@ -1,0 +1,456 @@
+define({ "api": [
+  {
+    "type": "DataType",
+    "url": "ColumnNameTypes",
+    "title": "Field data type concept and Best practices",
+    "group": "1_DataType",
+    "parameter": {
+      "fields": {
+        "Basic Data Type": [
+          {
+            "group": "Basic Data Type",
+            "type": "String",
+            "optional": false,
+            "field": "ColumnNameString",
+            "description": "<p>Any String value must contain 'String' in Column Name, Optional.</p>"
+          },
+          {
+            "group": "Basic Data Type",
+            "type": "Integer",
+            "optional": false,
+            "field": "ColumnNameInt",
+            "description": "<p>Any Integer value must contain 'Int' in Column Name, Optional.</p>"
+          },
+          {
+            "group": "Basic Data Type",
+            "type": "Number",
+            "optional": false,
+            "field": "ColumnNameNumber",
+            "description": "<p>Any Number value must contain 'Number' in Column Name, Optional.</p>"
+          },
+          {
+            "group": "Basic Data Type",
+            "type": "Date",
+            "optional": false,
+            "field": "ColumnNameDate",
+            "description": "<p>Any Date value must contain 'Date' in Column Name, Mandatory.</p>"
+          },
+          {
+            "group": "Basic Data Type",
+            "type": "Text",
+            "optional": false,
+            "field": "ColumnNameText",
+            "description": "<p>Any Text value must contain 'Text' in Column Name, Optional.</p>"
+          }
+        ]
+      }
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_datatype.php",
+    "groupTitle": "1_DataType",
+    "name": "DatatypeColumnnametypes"
+  },
+  {
+    "type": "get",
+    "url": "http://api.masterdatanode.com/#AppName/#Table/",
+    "title": "Basic request",
+    "name": "AppName",
+    "group": "2_Basic",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Content-Type\": \"application/json\",\n  \"access-token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK   //By default only 10 records will display\n{\n    #Table : [{\n  \"Column\": \"ColumnValue\",\n  \"Column1\": \"ColumnValue1\"\n },{\n  \"Column\": \"ColumnValue\",\n  \"Column1\": \"ColumnValue1\"\n },{\n  \"Column\": \"ColumnValue\",\n  \"Column1\": \"ColumnValue1\"\n }],\n    {\n    \"Count\" : \"#recordCount\"\n     }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n  'error' : 'Not authorized to use MasterDataNode. Login to get the access token and send it in Request Header (e.g. access_token => xxxxxxxxxxxxxxxxxxxxxxx)'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_basic.php",
+    "groupTitle": "2_Basic"
+  },
+  {
+    "type": "get",
+    "url": "http://api.masterdatanode.com/#AppName/#Table/?key=value&key=value",
+    "title": "Find Get request with param",
+    "name": "GetRequest",
+    "group": "2_Basic",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Content-Type\": \"application/json\",\n  \"access-token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " HTTP/1.1 200 OK\n {\n     #Table : [\n      #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  }............\n],\n  \"totalCount\",\"#number\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n  'error' : 'Not authorized to use MasterDataNode. Login to get the access token and send it in Request Header (e.g. access_token => xxxxxxxxxxxxxxxxxxxxxxx)'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_basic.php",
+    "groupTitle": "2_Basic"
+  },
+  {
+    "type": "put",
+    "url": "http://api.masterdatanode.com/#AppName/#Table/",
+    "title": "Limit the data",
+    "description": "<p>Limit the request with parameter</p>",
+    "name": "LimitRequest",
+    "group": "2_Basic",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Content-Type\": \"application/json\",\n  \"access-token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "   {\n    \"filter\" : {\n     \"key\": \"value\",\n     \"key1\": \"value1\"\n   },\n    \"limit\" : \"10\",\n    \"skip\" : \"1\" \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " HTTP/1.1 200 OK\n {\n     #Table : [\n      #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  }............\n],\n  \"totalCount\",\"#number\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n  'error' : 'Not authorized to use MasterDataNode. Login to get the access token and send it in Request Header (e.g. access_token => xxxxxxxxxxxxxxxxxxxxxxx)'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_basic.php",
+    "groupTitle": "2_Basic"
+  },
+  {
+    "type": "put",
+    "url": "http://api.masterdatanode.com/#AppName/#Table/",
+    "title": "Find Put request with param",
+    "description": "<p>Filter the request with Multiple parameter</p>",
+    "name": "PutFilterRequest",
+    "group": "2_Basic",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Content-Type\": \"application/json\",\n  \"access-token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "   {\n    \"filter\" : {\n     \"key\": \"value\",\n     \"key1\": \"value1\"\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " HTTP/1.1 200 OK\n {\n     #Table : [\n      #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  }............\n],\n  \"totalCount\",\"#number\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n  'error' : 'Not authorized to use MasterDataNode. Login to get the access token and send it in Request Header (e.g. access_token => xxxxxxxxxxxxxxxxxxxxxxx)'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_basic.php",
+    "groupTitle": "2_Basic"
+  },
+  {
+    "type": "put",
+    "url": "http://api.masterdatanode.com/#AppName/#Table/",
+    "title": "Skip the data",
+    "description": "<p>Skip the no. of data, used along with limit</p>",
+    "name": "SkipRequest",
+    "group": "2_Basic",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Content-Type\": \"application/json\",\n  \"access-token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "   {\n    \"filter\" : {\n     \"key\": \"value\",\n     \"key1\": \"value1\"\n   },\n    \"limit\" : \"10\",\n    \"skip\" : \"1\" \n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " HTTP/1.1 200 OK\n {\n     #Table : [\n      #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  }............\n],\n  \"totalCount\",\"#number\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n  'error' : 'Not authorized to use MasterDataNode. Login to get the access token and send it in Request Header (e.g. access_token => xxxxxxxxxxxxxxxxxxxxxxx)'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_basic.php",
+    "groupTitle": "2_Basic"
+  },
+  {
+    "type": "put",
+    "url": "http://api.masterdatanode.com/#AppName/#Table/",
+    "title": "Sort the data",
+    "description": "<p>Sort the request with parameter</p>",
+    "name": "SortRequest",
+    "group": "2_Basic",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Content-Type\": \"application/json\",\n  \"access-token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "   {\n    \"filter\" : {\n     \"key\": \"value\",\n     \"key1\": \"value1\"\n   },\n    \"sort\" : {\n        \"Column\" : \"ColumnValue\"\n        }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": " HTTP/1.1 200 OK\n {\n     #Table : [\n      #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  },\n  #unique : {\n   \"Column\": \"ColumnValue\",\n   \"Column1\": \"ColumnValue1\"\n  }............\n],\n  \"totalCount\",\"#number\"\n }",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n  'error' : 'Not authorized to use MasterDataNode. Login to get the access token and send it in Request Header (e.g. access_token => xxxxxxxxxxxxxxxxxxxxxxx)'\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_basic.php",
+    "groupTitle": "2_Basic"
+  },
+  {
+    "type": "put",
+    "url": "http://api.masterdatanode.com/#AppName/#Table/Delete",
+    "title": "Delete request",
+    "description": "<p>Delete the data</p>",
+    "name": "DeleteRequest",
+    "group": "3_Data_Manipulation",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Content-Type\": \"application/json\",\n  \"access-token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "   {\n    \"filter\" : {\n        \"Key\" : \"value\",\n        \"Key1\" : \"value1\", .....]\n       },\n     \"type\" : \"all/one\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n    {\n  \"success\": \"Record deleted successfully \",\n  \"description\": \"Todal number of record deleted #number\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "  \n\n\n\n\n\n\n\n\n{\n\"error\": \"Post data is missing\",\n\"description\": \"Table Column data missing, call the 'info' for column fields\",\n\"sampleJson\": {\n\"filter\": {\n\"$operator\": {\n\"column\": \"value\"\n}\n},\n\"type\": \"all\\/single\"\n}\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_manu.php",
+    "groupTitle": "3_Data_Manipulation"
+  },
+  {
+    "type": "put",
+    "url": "http://api.masterdatanode.com/#AppName/#Table/Save",
+    "title": "Save request",
+    "description": "<p>Save the new Data</p>",
+    "name": "SaveRequest",
+    "group": "3_Data_Manipulation",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Content-Type\": \"application/json\",\n  \"access-token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "{\n      \"data\": [\n          {\n              \"column\": \"value\",\n              \"column1\": \"value1\",\n              \"column..\": \"data..\"\n           },\n           {\n               \"column\": \"value\",\n               \"column1\": \"value1\",\n               \"column..\": \"data..\"\n           },\n            ........ Table column value \n       ]\n   }",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n    {\n  \"success\": \"Record added successfully \",\n  \"description\": \"Todal number of record added #number\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "    \n    {\n  \"error\": \"Post data is missing\",\n  \"description\": \"Table Column data missing, call the 'info' for column fields\",\n  \"sampleJson\": {\n      \"data\": [\n          {\n              \"column\": \"value\",\n              \"column1\": \"value1\",\n              \"column..\": \"data..\"\n           },\n           {\n               \"column\": \"value\",\n               \"column1\": \"value1\",\n               \"column..\": \"data..\"\n           },\n             ..... \n       ]\n   }\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_manu.php",
+    "groupTitle": "3_Data_Manipulation"
+  },
+  {
+    "type": "put",
+    "url": "http://api.masterdatanode.com/#AppName/#Table/Update",
+    "title": "Update request",
+    "description": "<p>Update the data</p>",
+    "name": "UpdateRequest",
+    "group": "3_Data_Manipulation",
+    "header": {
+      "examples": [
+        {
+          "title": "Header-Example:",
+          "content": "{\n  \"Content-Type\": \"application/json\",\n  \"access-token\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "parameter": {
+      "examples": [
+        {
+          "title": "Request-Example:",
+          "content": "   {\n    \"Data\" : {\n     \"Column\": \"value\",\n     \"Column1\": \"value1\",\n     ........ Table column value\n   },\n    \"filter\" : {\n        \"Key\" : \"value\",\n        \"Key1\" : \"value1\", .....]\n       },\n     \"type\" : \"all/single\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "    HTTP/1.1 200 OK\n     {\n  \"success\": \"Record updated successfully \",\n  \"description\": \"Todal number of record updated #number\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "error": {
+      "examples": [
+        {
+          "title": "Error-Response:",
+          "content": "\n{\n  \"error\": \"Post data is missing\",\n  \"description\": \"Table Column data missing, call the 'info' for column fields\",\n  \"sampleJson\": {\n  \"data\": {\n  \"column\": \"value\",\n  \"column1\": \"value1\",\n  \"column..\": \"data..\"\n  },\n  \"filter\": {\n  \"$operator\": {\n  \"column\": \"value\"\n  }\n  },\n  \"type\": \"all/single\"\n  }\n  }",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "./apidoc_manu.php",
+    "groupTitle": "3_Data_Manipulation"
+  }
+] });
